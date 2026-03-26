@@ -1,4 +1,4 @@
-import { Route, Routes } from "@solidjs/router";
+import { Outlet, Route } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import BottomIconNavBar from "@/components/BottomIconNavBar";
 import Slider from "@/components/Slider";
@@ -7,7 +7,7 @@ import HomePage from "@/pages/HomePage";
 import ProfilePage from "@/pages/ProfilePage";
 import SearchPage from "@/pages/SearchPage";
 
-export default function App() {
+function AppLayout() {
   const [isSliderOpen, setIsSliderOpen] = createSignal(false);
 
   return (
@@ -87,16 +87,22 @@ export default function App() {
         </header>
 
         <main class="mx-auto w-full max-w-7xl p-4 pb-28 sm:p-6 sm:pb-30 lg:p-8 lg:pb-8">
-          <Routes>
-            <Route path="/" component={HomePage} />
-            <Route path="/search" component={SearchPage} />
-            <Route path="/activity" component={ActivityPage} />
-            <Route path="/profile" component={ProfilePage} />
-          </Routes>
+          <Outlet />
         </main>
       </div>
 
       <BottomIconNavBar />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Route path="/" component={AppLayout}>
+      <Route path="/" component={HomePage} />
+      <Route path="/search" component={SearchPage} />
+      <Route path="/activity" component={ActivityPage} />
+      <Route path="/profile" component={ProfilePage} />
+    </Route>
   );
 }
