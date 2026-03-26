@@ -10,12 +10,12 @@ pub struct DeviceInfo {
     pub cpu_cores: usize,
 }
 
-/// `get_device_info` — a Tauri command exposed to the Solid.js frontend.
+/// `fetch_device_info` — a Tauri command exposed to the Solid.js frontend.
 ///
 /// Returns basic hardware/OS details so the UI can display them reactively
 /// via the `createNativeCommand` primitive.
 #[tauri::command]
-pub fn get_device_info() -> DeviceInfo {
+fn fetch_device_info() -> DeviceInfo {
     DeviceInfo {
         os_name: std::env::consts::OS.to_string(),
         os_version: os_version(),
@@ -58,7 +58,7 @@ pub fn run() {
             app.get_webview_window("main").unwrap().open_devtools();
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![get_device_info])
+        .invoke_handler(tauri::generate_handler![fetch_device_info])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

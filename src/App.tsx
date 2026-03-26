@@ -12,8 +12,8 @@ export default function App() {
   // Fine-grained reactive counter — no Virtual DOM diffing
   const [count, setCount] = createSignal(0);
 
-  // Reactive wrapper around the Tauri `get_device_info` Rust command
-  const [deviceInfo, { refetch }] = createNativeCommand<DeviceInfo>("get_device_info");
+  // Reactive wrapper around the Tauri `fetch_device_info` Rust command
+  const [deviceInfo, { refetch }] = createNativeCommand<DeviceInfo>("fetch_device_info");
 
   return (
     <div class="min-h-screen bg-surface text-text font-sans flex flex-col">

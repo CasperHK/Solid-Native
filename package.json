@@ -23,6 +23,7 @@
     "@tauri-apps/cli": "^2.5.0",
     "@types/node": "^25.5.0",
     "@unocss/preset-mini": "^66.1.1",
+    "@unocss/reset": "^66.6.7",
     "typescript": "^6.0.2",
     "unocss": "^66.1.1",
     "vite": "^6.3.2",
