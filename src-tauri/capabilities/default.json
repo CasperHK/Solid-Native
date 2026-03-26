@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema/acl-manifest.json",
+  "identifier": "default",
+  "description": "Default permissions for Solid Native",
+  "local": true,
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "os:default"
+  ]
+}

@@ -1,0 +1,23 @@
+# Node
+node_modules/
+dist/
+.pnpm-store/
+
+# Tauri build artifacts
+src-tauri/target/
+src-tauri/gen/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
