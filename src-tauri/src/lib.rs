@@ -124,7 +124,7 @@ pub fn run() {
         .plugin(tauri_plugin_os::init())
         // Critical startup path protocol. Requests like `appcache://localhost/shell/index.html`
         // are served from preloaded memory to avoid disk I/O latency.
-        .register_uri_scheme_protocol("appcache", |request| {
+        .register_uri_scheme_protocol("appcache", |_app, request| {
             let path = request.uri().path().trim_start_matches('/');
             if let Some((bytes, content_type)) = CRITICAL_ASSET_CACHE.get(path) {
                 return protocol_response(StatusCode::OK, bytes.to_vec(), Some(content_type));
