@@ -1,3 +1,4 @@
+import { useNavigate } from "@solidjs/router";
 import type { Accessor } from "solid-js";
 import { createSignal, For, Show } from "solid-js";
 
@@ -7,16 +8,15 @@ interface SliderProps {
 }
 
 const sideLinks = [
-  "Overview",
-  "Customers",
-  "Orders",
-  "Inventory",
-  "Analytics",
-  "Settings",
+  { label: "Home", path: "/" },
+  { label: "Search", path: "/search" },
+  { label: "Activity", path: "/activity" },
+  { label: "Profile", path: "/profile" },
 ];
 
 export default function Slider(props: SliderProps) {
   const [isLinksOpen, setIsLinksOpen] = createSignal(true);
+  const navigate = useNavigate();
 
   return (
     <aside
@@ -68,9 +68,12 @@ export default function Slider(props: SliderProps) {
                     ? "border-[var(--accent)] bg-[var(--accent)]/20 text-[var(--ink)]"
                     : "border-transparent bg-transparent text-[var(--ink)] hover:border-[var(--line)] hover:bg-[#1e1840]"
                 }`}
-                onClick={props.onClose}
+                onClick={() => {
+                  navigate(link.path);
+                  props.onClose();
+                }}
               >
-                {link}
+                {link.label}
               </button>
             )}
           </For>

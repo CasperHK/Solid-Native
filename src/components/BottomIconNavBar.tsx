@@ -1,19 +1,17 @@
-import type { Accessor } from "solid-js";
+import { useLocation, useNavigate } from "@solidjs/router";
 import { For } from "solid-js";
 
-interface BottomIconNavBarProps {
-  activeTab: Accessor<string>;
-  onTabChange: (tabId: string) => void;
-}
-
 const navItems = [
-  { id: "overview", icon: "🏠", label: "Home" },
-  { id: "search", icon: "🔍", label: "Search" },
-  { id: "activity", icon: "📊", label: "Activity" },
-  { id: "profile", icon: "👤", label: "Profile" },
+  { path: "/", icon: "🏠", label: "Home" },
+  { path: "/search", icon: "🔍", label: "Search" },
+  { path: "/activity", icon: "📊", label: "Activity" },
+  { path: "/profile", icon: "👤", label: "Profile" },
 ];
 
-export default function BottomIconNavBar(props: BottomIconNavBarProps) {
+export default function BottomIconNavBar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <nav class="safe-bottom fixed bottom-0 inset-x-0 z-20 px-4 pb-3">
       <div class="mx-auto w-full max-w-sm rounded-2xl border border-[#dccfbf] bg-[var(--panel)]/92 shadow-[0_10px_30px_rgba(25,25,25,0.15)] backdrop-blur">
@@ -23,11 +21,11 @@ export default function BottomIconNavBar(props: BottomIconNavBarProps) {
               <button
                 type="button"
                 class={`flex flex-col items-center justify-center gap-1 py-3 text-[11px] font-medium transition-colors ${
-                  props.activeTab() === item.id
+                  location.pathname === item.path
                     ? "text-[var(--accent)]"
                     : "text-[var(--muted)] hover:text-[var(--ink)]"
                 }`}
-                onClick={() => props.onTabChange(item.id)}
+                onClick={() => navigate(item.path)}
                 aria-label={`Open ${item.label}`}
               >
                 <span class="text-lg leading-none">{item.icon}</span>
