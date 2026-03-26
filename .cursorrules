@@ -1,0 +1,11 @@
+You are working in the Solid-Native repository.
+
+Import rules:
+- Prefer @/ alias for imports from src (for example: @/components/Slider).
+- Avoid deep relative imports like ../../.. when @/ can be used.
+- Keep imports stable during refactors and update all affected references.
+- Use local relative imports only when importing siblings in the same folder.
+
+Path consistency:
+- Keep TypeScript path mapping and Vite resolve.alias behavior aligned.
+- If adding new aliases, update both tsconfig.json and vite.config.ts in the same change.
