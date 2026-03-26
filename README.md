@@ -3,11 +3,11 @@
 
 Solid Native 結合了 Solid.js 的細粒度響應式（Fine-grained reactivity）與 Tauri 2.0 (Rust) 的強大後端，旨在打造一個比 React Native 更快、比 Flutter 更輕量、且擁有 Web 開發體驗的行動開發框架。
 ## ✨ 核心優勢 (Core Highlights)
-* ⚡️ 零 Virtual DOM: 基於 Solid.js，直接操作原生 DOM 節點，消除渲染層的運算負擔。
-* 🦀 Rust 驅動核心: 利用 Tauri 2.0 調用原生系統 API，效能遠超傳統 JavaScript Bridge。
-* 📦 極致體積: 初始安裝包 (Hello World) 僅約 2-5MB，不到傳統框架的 1/5。
-* 📱 原生觸感: 內建針對 WebKit/WebView 優化的動畫與手勢庫，確保 60fps 的流暢體驗。
-* 安全第一: 繼承 Rust 的記憶體安全特性，為你的 App 邏輯提供最強後盾。
+* ⚡️ **零 Virtual DOM：** 基於 Solid.js，直接操作原生 DOM 節點，消除渲染層的運算負擔。
+* 🦀 **Rust 驅動核心：** 利用 Tauri 2.0 調用原生系統 API，效能遠超傳統 JavaScript Bridge。
+* 📦 **極致體積：** 初始安裝包 (Hello World) 僅約 2-5MB，不到傳統框架的 1/5。
+* 📱 **原生觸感：** 內建針對 WebKit/WebView 優化的動畫與手勢庫，確保 60fps 的流暢體驗。
+* **安全第一：** 繼承 Rust 的記憶體安全特性，為你的 App 邏輯提供最強後盾。
 
 ## 🛠 技術棧 (The Stack)
 * UI 邏輯: Solid.js (Fine-grained Primitives)
