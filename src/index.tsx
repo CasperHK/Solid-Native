@@ -5,6 +5,7 @@ import "./styles/dashboard.css";
 import { Router } from "@solidjs/router";
 import { render } from "solid-js/web";
 import App from "./App";
+import { measureStartupMetrics } from "./perf/measureStartup";
 
 const root = document.getElementById("root");
 
@@ -19,3 +20,7 @@ render(() => (
     <App />
   </Router>
 ), root!);
+
+if (import.meta.env.DEV) {
+  measureStartupMetrics();
+}
