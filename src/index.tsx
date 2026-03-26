@@ -1,6 +1,7 @@
 /* @refresh reload */
 import "@unocss/reset/tailwind.css";
 import "virtual:uno.css";
+import "./styles/dashboard.css";
 import { Router } from "@solidjs/router";
 import { render } from "solid-js/web";
 import App from "./App";
