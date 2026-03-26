@@ -196,7 +196,7 @@ export function createNativeGesture(options: NativeGestureOptions = {}) {
     onPointerUp,
     onPointerCancel,
     style: () =>
-      `${prefix}-x: ${x()}px; ${prefix}-y: ${y()}px; ${prefix}-dx: ${deltaX()}px; ${prefix}-dy: ${deltaY()}px; transform: translate3d(var(${prefix}-dx), var(${prefix}-dy), 0); will-change: transform;`,
+      `${prefix}-x: ${x()}px; ${prefix}-y: ${y()}px; ${prefix}-dx: ${deltaX()}px; ${prefix}-dy: ${deltaY()}px;`,
   };
 
   const state: NativeGestureState = {

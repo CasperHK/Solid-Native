@@ -5,6 +5,8 @@
   "description": "Ultra-lightweight cross-platform mobile framework powered by Solid.js and Tauri v2",
   "scripts": {
     "dev": "vite",
+    "dev:clean-ports": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/clean-ports.ps1",
+    "dev:tauri-host": "pnpm run dev:clean-ports && pnpm dev",
     "build": "vite build",
     "preview": "vite preview",
     "perf:startup": "node scripts/benchmark-startup.mjs",

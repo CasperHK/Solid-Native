@@ -38,7 +38,6 @@ export default function Slider(props: SliderProps) {
       class={`fixed left-0 top-0 z-40 h-full w-[82vw] max-w-72 border-r border-[var(--line)] bg-[var(--panel)]/95 p-4 backdrop-blur-sm transition-transform duration-300 sm:p-5 ${
         props.isOpen() ? "translate-x-0" : "-translate-x-full"
       }`}
-      style={gesture.bind.style()}
     >
       <div class="mb-5 flex items-center justify-between gap-2">
         <div class="flex items-center gap-3">
