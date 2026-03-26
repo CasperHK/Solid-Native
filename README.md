@@ -1,57 +1,139 @@
 # 🚀 Solid Native
+
 **The ultra-lightweight, high-performance cross-platform mobile framework.**
 
-Solid Native 結合了 Solid.js 的細粒度響應式（Fine-grained reactivity）與 Tauri 2.0 (Rust) 的強大後端，旨在打造一個比 React Native 更快、比 Flutter 更輕量、且擁有 Web 開發體驗的行動開發框架。
-## ✨ 核心優勢 (Core Highlights)
-* ⚡️ **零 Virtual DOM：** 基於 Solid.js，直接操作原生 DOM 節點，消除渲染層的運算負擔。
-* 🦀 **Rust 驅動核心：** 利用 Tauri 2.0 調用原生系統 API，效能遠超傳統 JavaScript Bridge。
-* 📦 **極致體積：** 初始安裝包 (Hello World) 僅約 2-5MB，不到傳統框架的 1/5。
-* 📱 **原生觸感：** 內建針對 WebKit/WebView 優化的動畫與手勢庫，確保 60fps 的流暢體驗。
-* **安全第一：** 繼承 Rust 的記憶體安全特性，為你的 App 邏輯提供最強後盾。
+Solid Native combines Solid.js's fine-grained reactivity (zero Virtual DOM) with Tauri 2.0's Rust backend to create a mobile development experience that is faster than React Native, lighter than Flutter, and familiar to web developers.
 
-## 🛠 技術棧 (The Stack)
-* UI 邏輯: Solid.js (Fine-grained Primitives)
-* 系統橋接: Tauri v2 Mobile (Rust Backend)
-* 構建工具: Vite (Lightning fast HMR)
-* 樣式引擎: UnoCSS (Atomic CSS for Mobile)
-* 組件底層: Kobalte (Headless UI)
+## ✨ Core Highlights
 
-## 🚀 快速開始 (Quick Start)
-1. 安裝環境
-確保你已安裝 Rust、Node.js 以及對應平台的 SDK (Android Studio / Xcode)。
-2. 初始化專案
-    ```bash
-    pnpm dlx solid-native-cli init my-app
-    cd my-app
-    pnpm install
-    ```
+| Feature | Detail |
+|---|---|
+| ⚡️ Zero Virtual DOM | Solid.js updates the real DOM directly — no reconciliation overhead |
+| 🦀 Rust Core | Tauri v2 bridges CPU-intensive tasks through a type-safe Rust API |
+| 📦 Tiny Bundle | ~2–5 MB "Hello World" APK/IPA — less than 1/5 of comparable frameworks |
+| 📱 Native Feel | WebKit/WebView-optimised animations, safe-area-aware layout, 60 fps |
+| 🔒 Memory Safe | Rust's ownership model eliminates entire classes of runtime bugs |
 
-3. 開發模式
-    ```bash
-    # 啟動桌面版預覽
-    pnpm run tauri dev
-    
-    # 啟動行動端模擬器 (iOS / Android)
-    pnpm run tauri android dev
-    pnpm run tauri ios dev
-    ```
+## 🛠 The Stack
 
-## 📖 架構概念 (Architecture)
-Solid Native 採用 "Hybrid-Native" 模式：
-1. **Rendering Layer:** 使用系統原生 WebView (WebKit on iOS, WebView on Android) 執行 Solid.js UI。
-2. **Native Bridge:** 透過 Tauri 的 invoke 模式，將耗能運算（加密、影像處理）交由 Rust 處理。
-3. **Primitive API:** 封裝了 Solid 專屬的 createCamera()、createStorage() 等 Signals，讓原生功能像狀態一樣易用。
+| Layer | Technology |
+|---|---|
+| UI | **Solid.js** (fine-grained Primitives) |
+| Native Bridge | **Tauri v2** (Rust backend) |
+| Build Tool | **Vite** (lightning-fast HMR) |
+| Styling | **UnoCSS** (atomic CSS, mobile-optimised) |
+| Headless UI | **Kobalte** (accessible components) |
 
-## 🗺 路線圖 (Roadmap)
-* **Alpha:** 基於 Tauri 2.0 的核心 CLI 工具。
-* **UI Kit:** 針對 iOS/Android 設計的 SolidNativeComponents。
-* **Plugins:** 預置相機、通知、生物辨識等常用 Rust 插件。
-* **Performance:** 自動化基準測試對比 (Vs. React Native/Flutter)。
+## 🚀 Quick Start
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- **Rust** (`rustup` + a stable toolchain): https://rustup.rs
+- **Node.js** ≥ 18 and **pnpm**: `npm install -g pnpm`
+- **Android Studio** (for Android) *or* **Xcode** (for iOS on macOS)
+- Tauri mobile prerequisites: https://v2.tauri.app/start/prerequisites/
+
+### 1. Install dependencies
+
+```bash
+pnpm install
+```
+
+### 2. Desktop development (fastest feedback loop)
+
+```bash
+pnpm tauri:dev
+# or equivalently:
+pnpm tauri dev
+```
+
+### 3. Android development
+
+```bash
+# Initialise Android target (first time only)
+pnpm tauri android init
+
+# Start the Android emulator / device dev server
+pnpm tauri android dev
+```
+
+### 4. iOS development *(macOS only)*
+
+```bash
+# Initialise iOS target (first time only)
+pnpm tauri ios init
+
+# Start the iOS Simulator dev server
+pnpm tauri ios dev
+```
+
+### 5. Production build
+
+```bash
+# Desktop
+pnpm tauri build
+
+# Android release APK/AAB
+pnpm tauri android build
+
+# iOS IPA
+pnpm tauri ios build
+```
+
+## 📂 Project Structure
+
+```
+solid-native/
+├── index.html                  # Vite HTML entry (viewport-fit=cover for iOS)
+├── package.json                # pnpm workspace manifest
+├── tsconfig.json               # TypeScript config (jsxImportSource: solid-js)
+├── vite.config.ts              # Vite + UnoCSS + Solid plugins
+├── uno.config.ts               # UnoCSS theme, shortcuts, safe-area rules
+├── src/
+│   ├── index.tsx               # Solid.js root mount
+│   ├── App.tsx                 # Reactive counter + native device-info demo
+│   └── primitives/
+│       └── createNativeCommand.ts  # createResource wrapper around invoke()
+└── src-tauri/
+    ├── Cargo.toml              # Tauri v2 + tauri-plugin-os dependencies
+    ├── build.rs                # tauri-build script
+    ├── tauri.conf.json         # App config (identifier, window size, plugins)
+    ├── capabilities/
+    │   └── default.json        # ACL: core:default + os:default
+    └── src/
+        ├── main.rs             # Desktop entry → calls lib::run()
+        └── lib.rs              # #[tauri::command] get_device_info + run()
+```
+
+## 📖 Architecture
+
+Solid Native uses a **Hybrid-Native** model:
+
+1. **Rendering Layer** — the system WebView (WebKit on iOS, Chromium-based on Android) runs the Solid.js UI with zero Virtual DOM overhead.
+2. **Native Bridge** — Tauri's `invoke` IPC passes messages to Rust commands (`#[tauri::command]`) for anything CPU/hardware-intensive.
+3. **Primitive API** — `createNativeCommand<T>(command, payload?)` wraps `invoke` with `createResource`, giving you Solid Signals that automatically suspend while the Rust call is in-flight.
+
+```
+Solid UI  ──invoke()──▶  Rust Command  ──serialize──▶  Solid Signal
+   ▲                                                        │
+   └─────────────────── reactive update ◀──────────────────┘
+```
+
+## 🗺 Roadmap
+
+- **Alpha** — core CLI scaffolding tool (`solid-native-cli init`)
+- **UI Kit** — iOS/Android-native-feel component library
+- **Plugins** — camera, push notifications, biometrics, secure storage
+- **Benchmarks** — automated performance comparison vs. React Native & Flutter
 
 ---
 
-## 🤝 貢獻 (Contributing)
-我們歡迎任何形式的貢獻！無論是 Rust 後端優化、Solid 組件開發，還是文檔編寫。
+## 🤝 Contributing
 
-## 📄 許可證 (License)
-MIT © [Your Name/Organization]
+Contributions of all kinds are welcome — Rust backend optimisations, Solid.js component work, documentation improvements, or bug reports.
+
+## 📄 License
+
+MIT © Solid Native Contributors
