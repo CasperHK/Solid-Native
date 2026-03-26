@@ -1,4 +1,5 @@
-import { For } from "solid-js";
+import { createResource, For } from "solid-js";
+import { getInitialState } from "@/primitives/getInitialState";
 
 const stats = [
   { label: "Revenue", value: "$48,920", delta: "+12.4%" },
@@ -15,6 +16,8 @@ const activities = [
 ];
 
 export default function HomePage() {
+  const [initialState] = createResource(getInitialState);
+
   return (
     <>
       <header class="rise-in mb-6 flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-[var(--panel)]/85 p-5 backdrop-blur-sm md:flex-row md:items-center md:justify-between">
@@ -22,6 +25,9 @@ export default function HomePage() {
           <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">Dashboard</h1>
           <p class="mt-1 text-sm text-[var(--muted)]">
             Real-time overview of sales, customers, and operations.
+          </p>
+          <p class="mt-2 text-xs text-[var(--muted)]">
+            Startup: {initialState()?.os_name}/{initialState()?.arch} • cache {initialState()?.cache_ready ? "warm" : "cold"}
           </p>
         </div>
         <button
