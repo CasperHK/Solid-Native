@@ -30,7 +30,7 @@ export default function Slider(props: SliderProps) {
             CN
           </div>
           <div>
-            <p class="text-sm font-semibold tracking-wide">Casper Native</p>
+            <p class="text-sm font-semibold tracking-wide">Solid Native</p>
             <p class="text-[11px] text-[var(--muted)]">Operations Board</p>
           </div>
         </div>

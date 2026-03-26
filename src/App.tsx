@@ -1,4 +1,5 @@
-import { Outlet, Route } from "@solidjs/router";
+import { Route } from "@solidjs/router";
+import type { ParentProps } from "solid-js";
 import { createSignal } from "solid-js";
 import BottomIconNavBar from "@/components/BottomIconNavBar";
 import Slider from "@/components/Slider";
@@ -7,7 +8,7 @@ import HomePage from "@/pages/HomePage";
 import ProfilePage from "@/pages/ProfilePage";
 import SearchPage from "@/pages/SearchPage";
 
-function AppLayout() {
+function AppLayout(props: ParentProps) {
   const [isSliderOpen, setIsSliderOpen] = createSignal(false);
 
   return (
@@ -82,12 +83,12 @@ function AppLayout() {
               <span>Menu</span>
             </button>
 
-            <p class="text-sm font-semibold tracking-wide text-[var(--muted)] sm:text-base">Casper Native Dashboard</p>
+            <p class="text-sm font-semibold tracking-wide text-[var(--muted)] sm:text-base">Solid Native Dashboard</p>
           </div>
         </header>
 
         <main class="mx-auto w-full max-w-7xl p-4 pb-28 sm:p-6 sm:pb-30 lg:p-8 lg:pb-8">
-          <Outlet />
+          {props.children}
         </main>
       </div>
 
