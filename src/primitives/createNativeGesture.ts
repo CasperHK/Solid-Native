@@ -129,9 +129,8 @@ export function createNativeGesture(options: NativeGestureOptions = {}) {
       return;
     }
 
-    const style = target.style;
     animate(
-      style,
+      target,
       {
         [`${prefix}-dx` as "--gesture-dx"]: "0px",
         [`${prefix}-dy` as "--gesture-dy"]: "0px",
